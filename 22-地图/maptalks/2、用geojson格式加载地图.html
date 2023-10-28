@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用geojson格式加载地图</title>
+  <link rel="stylesheet" href="https://unpkg.com/maptalks/dist/maptalks.css">
+  <script type="text/javascript" src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>
+
+</head>
+<body>
+<div id="map" style="width: 100vw;height: 100vh;"></div>
+<script>
+
+  const mapJSON = {
+    "version":"1.0",
+    "options":{
+      "center":[118.78656749353571, 32.053362852851497],
+      "zoom":13
+    },
+    "baseLayer":{
+      "type":"TileLayer",
+      "id":"base",
+      "options":{
+        'urlTemplate': 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        'subdomains': ['a', 'b', 'c', 'd']
+      }
+    },
+    "layers":[
+      {
+        "type":"VectorLayer",
+        "id":"v",
+        "geometries":[
+          {
+            "feature":{
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[118.78656749353571, 32.053362852851497]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  };
+  const map = new maptalks.Map.fromJSON('map', mapJSON, {
+    center: [118.78656749353571, 32.053362852851497], //中心点
+    zoom: 14,  //地图层级
+    centerCross: false,  //在地图中心显示红十字
+  });
+
+</script>
+
+</body>
+</html>
